@@ -1,4 +1,5 @@
 ## Python web app
+![workflow badge](https://github.com/p50000/core-course-labs/actions/workflows/app_python.yaml/badge.svg)
 
 This is a web application which displays current time in moscow time zone. It is written using Django as a framework.
 
@@ -13,7 +14,7 @@ This is a web application which displays current time in moscow time zone. It is
 
 Go to http://localhost:8000/display_time/ to see current time
 
-### To test
+### Unit Tests
 1. Run tests using the following command:
 
 `python manage.py test myproject.tests.CurrentMskTimeTest`
@@ -29,4 +30,12 @@ It's possible to pull and run the application as an image from Docker hub. Insta
     `docker run -it -p 8000:8000 rentacat45/python-web-app`
 
 Access through http://localhost:8000/display_time/ to see current time
+
+### CI
+CI pipeline is done via GitHub Actions. Every push to the repository would trigger a workflow described in`.github/workflows/python-app.yml`. The workflow is the following:
+
+- Lint the code with `ruff`
+- Run unit tests in `myproject/myprojecttests.py`
+- Build the Docker image and push it to Docker Hub
+- Run snyk
 
